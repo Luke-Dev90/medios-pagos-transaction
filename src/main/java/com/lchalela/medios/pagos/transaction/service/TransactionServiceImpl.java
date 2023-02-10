@@ -47,13 +47,15 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public void transaction(NewTransactionDTO transaction) {
+	public void transaction(NewTransactionDTO transaction) throws Exception {
 
 		AccountDTO account;
+		
 
 		try {
 			logger.info("Init request to MS account");
 			account = this.accountRest.checkAccounts(transaction);
+			
 			transaction.setAccountDestination(account.getAccountDestination());
 			transaction.setAccountOrigin(account.getAccountOrigin());
 

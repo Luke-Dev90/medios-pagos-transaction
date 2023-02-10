@@ -8,7 +8,7 @@ import com.lchalela.medios.pagos.transaction.dto.TransactionDTO;
 
 public interface TransactionService {
 	List<TransactionDTO> getAllTransactionByCbu(CbuDTO cbuaccountOrigin);
-	public NewTransactionDTO registerTransaction(NewTransactionDTO transactionDTO);
-	public void transaction(NewTransactionDTO transaction);
+	public NewTransactionDTO registerTransaction(NewTransactionDTO transactionDTO)throws Exception;
+	public void transaction(NewTransactionDTO transaction) throws Exception;
 	List<TransactionDTO> findTransactionByDateRegister(String dateStart, String dateEnd);
 }

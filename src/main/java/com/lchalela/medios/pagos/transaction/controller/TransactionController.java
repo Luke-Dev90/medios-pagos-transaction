@@ -27,7 +27,7 @@ public class TransactionController {
 	private TransactionService transactionService;
 	
 	@PostMapping("/new")
-	public ResponseEntity<?> registerTransaction(@RequestBody NewTransactionDTO transactionDto){
+	public ResponseEntity<?> registerTransaction(@RequestBody NewTransactionDTO transactionDto) throws Exception{
 		logger.info("init new register transaction");
 		this.transactionService.transaction(transactionDto);
 		return new ResponseEntity<>("Transaction successful", HttpStatus.CREATED);

@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +25,19 @@ public class Transaction {
 	private Long id;
 	private String reason;
 	private String paymentMethod;
+	
+	private Boolean isProgrammed;
+	private LocalDateTime dateAcreditation;
+	
+	@DateTimeFormat(pattern = "yyyy-dd-mm hh:mm:ss")
 	private LocalDateTime createAt;
 	private String accountDestination;
 	private String accountOrigin;
 	private BigDecimal amount;
+	
+	@PrePersist
+	public void createAtGenerated() {
+		this.createAt = LocalDateTime.now();
+		System.out.println(this.createAt);
+	}
 }
