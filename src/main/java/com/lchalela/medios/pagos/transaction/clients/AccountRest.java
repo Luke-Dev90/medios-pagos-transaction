@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.lchalela.medios.pagos.transaction.dto.AccountDTO;
 import com.lchalela.medios.pagos.transaction.dto.NewTransactionDTO;
 
-@FeignClient(name = "account-service", url ="localhost:8083")
+@FeignClient(name = "account-service")
 public interface AccountRest {
-	@PostMapping("/account/check")
+	@PostMapping("/api/v1/check")
 	public AccountDTO checkAccounts(@RequestBody NewTransactionDTO transaction) throws Exception;
 }

@@ -18,7 +18,7 @@ import com.lchalela.medios.pagos.transaction.dto.TransactionDTO;
 import com.lchalela.medios.pagos.transaction.service.TransactionService;
 
 @RestController
-@RequestMapping("/transaction")
+@RequestMapping("/v1")
 public class TransactionController {
 	
 	private Logger logger = LoggerFactory.getLogger(TransactionController.class);
