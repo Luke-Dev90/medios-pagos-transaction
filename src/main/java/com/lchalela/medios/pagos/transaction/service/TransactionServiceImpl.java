@@ -16,6 +16,8 @@ import com.lchalela.medios.pagos.transaction.mapper.TransactionMapper;
 import com.lchalela.medios.pagos.transaction.model.Transaction;
 import com.lchalela.medios.pagos.transaction.repository.TransactionRepository;
 
+import brave.Tracer;
+
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
@@ -23,13 +25,15 @@ public class TransactionServiceImpl implements TransactionService {
 	private TransactionRepository transactionRepository;
 	private TransactionMapper transactionMapper;
 	private AccountRest accountRest;
-
+	private Tracer trace;
+	
 	@Autowired
 	public TransactionServiceImpl(TransactionRepository transactionRepository, TransactionMapper transactionMapper,
-			AccountRest accountRest) {
+			AccountRest accountRest,Tracer trace) {
 		this.transactionRepository = transactionRepository;
 		this.transactionMapper = transactionMapper;
 		this.accountRest = accountRest;
+		this.trace = trace;
 	}
 
 	@Override
@@ -64,6 +68,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+			trace.currentSpan().tag("error", e.getMessage());
 		}
 
 	}
