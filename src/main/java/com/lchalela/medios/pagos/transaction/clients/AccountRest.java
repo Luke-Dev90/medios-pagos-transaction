@@ -9,6 +9,6 @@ import com.lchalela.medios.pagos.transaction.dto.NewTransactionDTO;
 
 @FeignClient(name = "account-service")
 public interface AccountRest {
-	@PostMapping("/api/v1/check")
+	@PostMapping("/v1/check")
 	public AccountDTO checkAccounts(@RequestBody NewTransactionDTO transaction) throws Exception;
 }
